@@ -1,14 +1,18 @@
-# Smart Daily Task Planner
+# Smart Task Planner
 
-This is a simple Python project that helps manage daily tasks.
-
-Features:
+# Features
 - Add tasks
-- View tasks
-- Store tasks in MySQL database
+- View tasks (sorted by priority & deadline)
+- Delete tasks
+- Mark tasks as completed
+- Search tasks
+- Filter pending tasks
 
-Technologies Used:
+# Technologies Used
 - Python
 - MySQL
-- Git
-- GitHub
+
+# How to Run
+1. Install MySQL
+2. Run Python file:
+   python task_planner.py
