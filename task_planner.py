@@ -1,5 +1,16 @@
 import mysql.connector
 
+def display_tasks(tasks):
+    if not tasks:
+        print("No tasks found.")
+        return
+
+    print("\nID | Title | Priority | Deadline | Status")
+    print("-------------------------------------------")
+
+    for task in tasks:
+        print(task[0], "|", task[1], "|", task[3], "|", task[4], "|", task[5])
+
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -30,10 +41,13 @@ while True:
 
     if choice == 1:
         title = input("Enter task title: ")
+        if title.strip() == "":
+            print("Title cannot be empty!")
+            continue
         description = input("Enter description: ")
         priority = input("Enter priority (1-3): ")
 
-        if not priority.isdigit() or int(priority) not in [1, 2, 3]:
+        if not priority.isdigit():
             print("Invalid priority. Use 1 (High), 2 (Medium), 3 (Low).")
             continue
 
@@ -65,14 +79,7 @@ while True:
     elif choice == 3:
         cursor.execute("SELECT * FROM tasks WHERE status = 'pending'")
         tasks = cursor.fetchall()
-        if not tasks:
-            print("No tasks found.")
-        else:
-            print("\nID | Title | Priority | Deadline | Status")
-            print("-------------------------------------------")
-
-            for task in tasks:
-                print(task[0], "|", task[1], "|", task[3], "|", task[4], "|", task[5])
+        display_tasks(tasks)
                     
 
     elif choice == 4:
